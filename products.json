@@ -10,7 +10,7 @@
 	"visibility": 1,
 	"attributes": {
 		"color": ["Blue"],
-		"size": ["P", "M", "G"],
+		"size": ["P", "M", "G"]
 	}
 },
 {
@@ -18,13 +18,13 @@
 	"sku": "002",
 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
 	"price": "19.00",
-	"price_special": "",
+	"price_special": "17.00",
 	"image": "green-t-shirt.jpg",
 	"url": "green-t-shirt",
 	"visibility": 1,
 	"attributes": {
 		"color": ["Green"],
-		"size": ["P", "M", "G"],
+		"size": ["M", "G"]
 	}
 },
 {
@@ -38,21 +38,21 @@
 	"visibility": 1,
 	"attributes": {
 		"color": ["Cobalt Blue"],
-		"size": ["P", "M", "G"],
+		"size": ["P", "M"]
 	}
 },
 {
 	"name": "Freedom t-shirt - Purple",
 	"sku": "004",
 	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
-	"price": "11.90",
-	"price_special": "",
+	"price": "51.90",
+	"price_special": "11.90",
 	"image": "purple-t-shirt.jpg",
 	"url": "purple-t-shirt",
 	"visibility": 1,
 	"attributes": {
 		"color": ["Purple"],
-		"size": ["P", "M", "G"],
+		"size": ["P", "M", "G"]
 	}
 },
 {
@@ -66,7 +66,7 @@
 	"visibility": 1,
 	"attributes": {
 		"color": ["Teal"],
-		"size": ["P", "M", "G"],
+		"size": ["P", "M", "G"]
 	}
 },
 {
@@ -80,7 +80,7 @@
 	"visibility": 1,
 	"attributes": {
 		"color": ["Grey"],
-		"size": ["P", "M", "G"],
+		"size": ["G"]
 	}
 },
 {
@@ -94,7 +94,7 @@
 	"visibility": 1,
 	"attributes": {
 		"color": ["Red"],
-		"size": ["P", "M", "G"],
+		"size": ["P", "G", "XG"]
 	}
 }
 ]
