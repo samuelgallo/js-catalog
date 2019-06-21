@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Catalog products | My Store</title>
+</head>
+<body>
+	<script>
+		window.onload = function() {
+		fetch('products.json')
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			for(let p in data){
+				console.log(data[p].name);
+			}
+		})
+		.catch(error => console.error(error));
+		}
+	</script>
+</body>
+</html>
