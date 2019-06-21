@@ -1,0 +1,100 @@
+[
+{
+	"name": "Freedom t-shirt - Blue",
+	"sku": "001",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "24.00",
+	"price_special": "",
+	"image": "blue-t-shirt.jpg",
+	"url": "blue-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Blue"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Green",
+	"sku": "002",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "19.00",
+	"price_special": "",
+	"image": "green-t-shirt.jpg",
+	"url": "green-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Green"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Cobalt Blue",
+	"sku": "003",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "32.00",
+	"price_special": "",
+	"image": "cobalt-blue-t-shirt.jpg",
+	"url": "cobalt-blue-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Cobalt Blue"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Purple",
+	"sku": "004",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "11.90",
+	"price_special": "",
+	"image": "purple-t-shirt.jpg",
+	"url": "purple-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Purple"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Teal",
+	"sku": "005",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "27.30",
+	"price_special": "",
+	"image": "teal-t-shirt.jpg",
+	"url": "teal-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Teal"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Grey",
+	"sku": "006",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "24.00",
+	"price_special": "",
+	"image": "grey-t-shirt.jpg",
+	"url": "grey-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Grey"],
+		"size": ["P", "M", "G"],
+	}
+},
+{
+	"name": "Freedom t-shirt - Red",
+	"sku": "006",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur ullamcorper sapien, ac venenatis nisi vehicula sed. Vivamus et enim condimentum, feugiat magna nec, volutpat erat. Sed magna libero, consequat non augue eu, commodo dapibus orci. Nunc accumsan est vel urna scelerisque aliquam.",
+	"price": "39.99",
+	"price_special": "29.99",
+	"image": "red-t-shirt.jpg",
+	"url": "red-t-shirt",
+	"visibility": 1,
+	"attributes": {
+		"color": ["Red"],
+		"size": ["P", "M", "G"],
+	}
+}
+]
