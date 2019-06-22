@@ -3,19 +3,176 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Catalog products | My Store</title>
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
-<body>
+<body class="catalog">
+	<div id="preloader"></div>
+	<div id="root" class="page">
+		<div class="header">
+			<div class="header-inner">
+				<div class="header-hamburger">
+						<button type="button" class="header-hamburger--button"><i data-feather="menu"></i></button>
+				</div>
+				<div class="header-logo">
+					<a href="/"><h1>Logo.</h1></a>
+				</div>
+				<div class="header-search">
+						<form action="/" method="get" id="search-form" class="search-form">
+							<input type="text" placeholder="Search for products" id="search-input" autocomplete="off" class="input-text">
+							<button type="submit" title="Search" class="button search-form--button"><i data-feather="search"></i></button>
+						</form>
+				</div>
+				<div class="header-actions">
+					<a href="#" class="header-actions--contact"><i data-feather="send"></i><span class="label header-actions--label">Contact Us</span></a>
+					<a href="#" class="header-actions--sign-in"><i data-feather="log-in"></i><span class="label header-actions--label">Sign in</span></a>
+					<a href="#" class="header-actions--account"><i data-feather="user"></i><span class="label header-actions--label">Account</span></a>
+					<a href="#" class="header-actions--cart"><i data-feather="shopping-cart"></i><span class="label header-actions--label">Cart</span></a>
+				</div>
+			</div>
+			<div class="nav">
+				<div class="nav-inner">
+					<ul>
+						<li><a href="">Sale</a></li>
+						<li><a href="">Item 1</a></li>
+						<li><a href="">Item 1</a></li>
+						<li><a href="">Item 1</a></li>
+						<li><a href="">Item 1</a></li>
+						<li><a href="">About Us</a></li>
+						<li class="mobile-only"></li>
+						<li class="mobile-only"></li>
+						<li class="mobile-only"></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wrapper">
+			<div class="content-inner">
+				<div class="content">
+					<div class="toolbar"></div>
+					<!-- /end .toolbar -->
+
+					<div class="product-grid">
+						<div class="product-item"></div>
+						<div class="product-item"></div>
+						<div class="product-item"></div>
+						<div class="product-item"></div>
+						<div class="product-item"></div>
+						<div class="product-item"></div>
+					</div>
+					<!-- /end .product-grid -->
+					<div class="pagination">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<!-- /end .pagination -->
+				</div>
+				<!-- /end .content -->
+
+				<div class="sidebar">
+					<div class="sidebar-top">
+
+					</div>
+					<div class="filters">
+						<div class="filters-item"></div>
+					</div>
+				</div>
+				<!-- /end .sidebar -->
+
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="row">
+					<div class="col footer-links">
+						<h4>Links</h4>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+					</div>
+					<div class="col footer-about">
+						<h4>Store</h4>
+						<p></p>
+					</div>
+					<div class="col footer-follow-us">
+						<h4>Follow Us</h4>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+						<a href=""></a>
+					</div>
+					<div class="col footer-newsletter">
+						<h4>Newsletter</h4>
+						<form action="#">
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="copyright">&copy; 2019 My Store, Inc.</div>
+					<div class="payments">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://unpkg.com/feather-icons"></script>
 	<script>
 		window.onload = function() {
+		// Call feather icons
+		feather.replace();
+
 		fetch('products.json')
 		.then(response => response.json())
 		.then(data => {
 			console.log(data);
+			let productsGrid = document.querySelector('.product-grid');
+			let html = '';
 			for(let p in data){
-				console.log(data[p].name);
+
+				let price_special = data[p].price_special ? '<span class="product-item-price--regular">$'+ data[p].price_special +'</span>' : '';
+				let price = data[p].price ? '<span class="product-item-price--special">$'+ data[p].price +'</span>' : '';
+
+				html += `<div class="product-item"> 
+									<a href="#" class="product-item-url">
+										<div class="product-item-image"><img src="images/${data[p].image}" alt="${data[p].name}"></div>
+										<div class="product-item-heading"><h2 class="product-item-title">${data[p].name}</h2></div>
+										<div class="product-item-price">${price_special} ${price}</div>
+									</a>
+								</div>`;
 			}
+			productsGrid.innerHTML = html;
+			console.log(productsGrid);
 		})
 		.catch(error => console.error(error));
+		}
+
+		const login = document.querySelector('.header-actions--sign-in');
+		const placeholder = document.querySelector('#search-input');
+		let name = '';
+		login.onclick = function(e) {
+			e.preventDefault();
+			name = window.prompt('Qual o seu nome?');
+			placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
+			if(name){
+				document.querySelector('.header-actions--sign-in').style.display = 'none';
+				document.querySelector('.header-actions--account').style.display = 'block';
+			}
 		}
 	</script>
 </body>
