@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Catalog products | My Store</title>
+	<title>Catalog Products | My Store</title>
 	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body class="catalog">
@@ -46,20 +46,50 @@
 			</div>
 		</div>
 		<div class="wrapper">
-			<div class="content-inner">
-				<div class="content">
-					<div class="toolbar"></div>
-					<!-- /end .toolbar -->
-
-					<div class="product-grid">
-						<div class="product-item"></div>
-						<div class="product-item"></div>
-						<div class="product-item"></div>
-						<div class="product-item"></div>
-						<div class="product-item"></div>
-						<div class="product-item"></div>
+			<div class="content">
+				<div class="content-inner">
+					<div class="filter">
+						<div class="filter-item">
+							<h4>Color</h4>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="filter-item">
+							<h4>Price</h4>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
 					</div>
-					<!-- /end .product-grid -->
+
+					<div class="products-inner">
+						<div class="toolbar">
+							<label for="sort">Order by:</label>
+							<select name="sort" id="sort">
+								<option value="name">Name</option>
+								<option value="price">Price</option>
+							</select>
+						</div>
+						<!-- /end .toolbar -->
+
+						<div class="product-grid">
+							<div class="product-item"></div>
+							<div class="product-item"></div>
+							<div class="product-item"></div>
+							<div class="product-item"></div>
+							<div class="product-item"></div>
+							<div class="product-item"></div>
+						</div>
+						<!-- /end .product-grid -->
+
+					</div>
+					<!-- /end .products-inner -->
 					<div class="pagination">
 						<ul>
 							<li></li>
@@ -130,50 +160,159 @@
 			</div>
 		</div>
 	</div>
+	<div class="overlay">
+		<button class="overlay-close">X</button>
+	</div>
+	<div class="modal modal-login" style="display: none;">
+		<form id="login-form">
+			<label for="name">What's your name?</label>
+			<input type="text" name="name" id="name">
+			<button class="login-form--button">Login</button>
+		</form>
+	</div>
 	
 	<script src="https://unpkg.com/feather-icons"></script>
 	<script>
-		window.onload = function() {
-		// Call feather icons
-		feather.replace();
+		(function() {
+			var main = main || {};
 
-		fetch('products.json')
-		.then(response => response.json())
-		.then(data => {
-			console.log(data);
-			let productsGrid = document.querySelector('.product-grid');
-			let html = '';
-			for(let p in data){
+			main.preLoader = function() {
+				setTimeout(function() {
+					document.querySelector('#preloader').style.display = 'none';
+				}, 1000);
+			};
 
-				let price_special = data[p].price_special ? '<span class="product-item-price--regular">$'+ data[p].price_special +'</span>' : '';
-				let price = data[p].price ? '<span class="product-item-price--special">$'+ data[p].price +'</span>' : '';
+			main.loadIcons = function() {
+				feather.replace();
+			};
 
-				html += `<div class="product-item"> 
-									<a href="#" class="product-item-url">
-										<div class="product-item-image"><img src="images/${data[p].image}" alt="${data[p].name}"></div>
-										<div class="product-item-heading"><h2 class="product-item-title">${data[p].name}</h2></div>
-										<div class="product-item-price">${price_special} ${price}</div>
-									</a>
-								</div>`;
-			}
-			productsGrid.innerHTML = html;
-			console.log(productsGrid);
-		})
-		.catch(error => console.error(error));
-		}
+			main.loadProducts = function() {
+				fetch('products.json')
+				.then(response => response.json())
+				.then(data => {
 
-		const login = document.querySelector('.header-actions--sign-in');
-		const placeholder = document.querySelector('#search-input');
-		let name = '';
-		login.onclick = function(e) {
-			e.preventDefault();
-			name = window.prompt('Qual o seu nome?');
-			placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
-			if(name){
-				document.querySelector('.header-actions--sign-in').style.display = 'none';
-				document.querySelector('.header-actions--account').style.display = 'block';
-			}
-		}
+					main.loadGrid(data);
+				})
+				.catch(error => console.error(error));
+			};
+
+			main.loadGrid = function(data) {
+				console.log(data);
+					let productsGrid = document.querySelector('.product-grid');
+					let html = '';
+					for(let p in data){
+
+						let price_special = data[p].price_special ? '<span class="product-item-price--regular">$'+ data[p].price_special +'</span>' : '';
+						let price = data[p].price ? '<span class="product-item-price--special">$'+ data[p].price +'</span>' : '';
+
+						html += `<div class="product-item"> 
+											<a href="#" class="product-item-url">
+												<div class="product-item-image"><img src="images/${data[p].image}" alt="${data[p].name}"></div>
+												<div class="product-item-heading"><h2 class="product-item-title">${data[p].name}</h2></div>
+												<div class="product-item-price">${price_special} ${price}</div>
+											</a>
+										</div>`;
+					}
+					productsGrid.innerHTML = html;
+					console.log(productsGrid);
+			};
+
+			main.sort = function() {
+
+			};
+
+			main.loadModal = function(activity) {
+				var overlay = document.querySelector('.overlay');
+				var modal = document.querySelector('.modal');
+
+				if(activity == 'open'){
+					overlay.style.display = 'block';
+					overlay.classList.add('active');
+
+					modal.style.display = 'block';
+				} else {
+					overlay.style.display = 'none';
+					overlay.classList.remove('active');
+
+					modal.style.display = 'none';
+				}
+
+				var closeButton = document.querySelector('.overlay-close');
+				closeButton.onclick = function(e) {
+					e.preventDefault();
+					main.loadModal('close');
+				}
+			};
+
+			main.login = function() {
+				
+				var login = document.querySelector('.header-actions--sign-in');
+				var placeholder = document.querySelector('#search-input');
+		
+
+				login.onclick = function(e) {
+					e.preventDefault();
+
+					main.loadModal('open');
+					sendLogin();
+				}
+				function sendLogin() {
+
+					loginButton = document.querySelector('.login-form--button');
+
+					loginButton.onclick = function(e) {
+						e.preventDefault();
+
+						var name = document.querySelector('#name').value;
+
+						if(name){
+							placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
+							document.querySelector('.header-actions--sign-in').style.display = 'none';
+							document.querySelector('.header-actions--account').style.display = 'block';
+							
+							try {
+								localStorage.setItem('name', name);
+
+							} catch(e) {
+									console.log('localStorage not found');
+							}
+
+							main.loadModal('close');
+						}
+					}
+				}
+			};
+
+			main.checkStorage = function() {
+				if (window.localStorage) {
+
+					var name = localStorage.getItem('name');
+
+					if(name){
+						var placeholder = document.querySelector('#search-input');
+						placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
+						document.querySelector('.header-actions--sign-in').style.display = 'none';
+						document.querySelector('.header-actions--account').style.display = 'block';
+					}else{
+						document.querySelector('.header-actions--sign-in').style.display = 'block';
+						document.querySelector('.header-actions--account').style.display = 'none';
+					}
+				}
+			};
+
+			main.init = function() {
+				main.loadIcons();
+				main.loadProducts();
+				main.preLoader();
+				main.login();
+				main.checkStorage();
+			};
+
+			window.onload = main.init();
+
+			console.log(main);
+
+		})();
 	</script>
 </body>
 </html>
