@@ -33,10 +33,10 @@
 				<div class="nav-inner">
 					<ul>
 						<li><a href="">Sale</a></li>
-						<li><a href="">Item 1</a></li>
-						<li><a href="">Item 1</a></li>
-						<li><a href="">Item 1</a></li>
-						<li><a href="">Item 1</a></li>
+						<li><a href="">Shirts</a></li>
+						<li><a href="">Jeans</a></li>
+						<li><a href="">Dress</a></li>
+						<li><a href="">Contact Us</a></li>
 						<li><a href="">About Us</a></li>
 						<li class="mobile-only"></li>
 						<li class="mobile-only"></li>
@@ -48,27 +48,6 @@
 		<div class="wrapper">
 			<div class="content">
 				<div class="content-inner">
-					<div class="filter">
-						<div class="filter-item">
-							<h4>Color</h4>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-						<div class="filter-item">
-							<h4>Price</h4>
-							<ul>
-								<li></li>
-								<li></li>
-								<li></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="products-inner">
 						<div class="toolbar">
 							<label for="sort">Order by:</label>
 							<select name="sort" id="sort">
@@ -88,18 +67,17 @@
 						</div>
 						<!-- /end .product-grid -->
 
-					</div>
-					<!-- /end .products-inner -->
-					<div class="pagination">
-						<ul>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-							<li></li>
-						</ul>
-					</div>
-					<!-- /end .pagination -->
+						<div class="pagination">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<!-- /end .pagination -->
+					
 				</div>
 				<!-- /end .content -->
 
@@ -108,7 +86,31 @@
 
 					</div>
 					<div class="filters">
-						<div class="filters-item"></div>
+						<div class="filters-item filters-color">
+							<h4>Color</h4>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="filters-item filters-size">
+								<h4>Size</h4>
+								<ul>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+						</div>
+						<div class="filters-item filters-price">
+							<h4>Price</h4>
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 				<!-- /end .sidebar -->
@@ -173,13 +175,18 @@
 	
 	<script src="https://unpkg.com/feather-icons"></script>
 	<script>
-		(function() {
+		!(function() {
 			var main = main || {};
 
-			main.preLoader = function() {
-				setTimeout(function() {
-					document.querySelector('#preloader').style.display = 'none';
-				}, 1000);
+			main.preLoader = function(activity) {
+
+				if(activity == 'show') {
+					document.querySelector('#preloader').style.display = 'block';
+				} else {
+					setTimeout(function() {
+						document.querySelector('#preloader').style.display = 'none';
+					}, 1000);
+				}
 			};
 
 			main.loadIcons = function() {
@@ -189,26 +196,33 @@
 			main.loadProducts = function() {
 				fetch('products.json')
 				.then(response => response.json())
-				.then(data => {
-
-					main.loadGrid(data);
+				.then(product => {
+					main.loadGrid(product);
 				})
 				.catch(error => console.error(error));
 			};
 
-			main.loadGrid = function(data) {
-				console.log(data);
+			main.loadGrid = function(product, sort = false) {
+				console.log(product);
 					let productsGrid = document.querySelector('.product-grid');
 					let html = '';
-					for(let p in data){
+					for(let p in product){
 
-						let price_special = data[p].price_special ? '<span class="product-item-price--regular">$'+ data[p].price_special +'</span>' : '';
-						let price = data[p].price ? '<span class="product-item-price--special">$'+ data[p].price +'</span>' : '';
+					/*
+							product.sort(function (a, b) {
+								return a.price - b.price;
+							});
+						*/
+
+
+
+						let price_special = product[p].price_special ? '<span class="product-item-price--regular">$'+ product[p].price_special +'</span>' : '';
+						let price = product[p].price ? '<span class="product-item-price--special">$'+ product[p].price +'</span>' : '';
 
 						html += `<div class="product-item"> 
 											<a href="#" class="product-item-url">
-												<div class="product-item-image"><img src="images/${data[p].image}" alt="${data[p].name}"></div>
-												<div class="product-item-heading"><h2 class="product-item-title">${data[p].name}</h2></div>
+												<div class="product-item-image"><img src="images/${product[p].image}" alt="${product[p].name}"></div>
+												<div class="product-item-heading"><h2 class="product-item-title">${product[p].name}</h2></div>
 												<div class="product-item-price">${price_special} ${price}</div>
 											</a>
 										</div>`;
@@ -217,27 +231,43 @@
 					console.log(productsGrid);
 			};
 
-			main.sort = function() {
+			main.loadFilters = function() {
 
+			}
+
+			main.sort = function() {
+				let sort = document.querySelector('#sort');
+				sort.addEventListener('change', function() {
+					if(sort.value === 'price'){
+						main.loadGrid(main.loadProducts(), 'price');
+					}else{
+						main.loadGrid(main.loadProducts(), 'name');
+					}
+				});
 			};
 
 			main.loadModal = function(activity) {
-				var overlay = document.querySelector('.overlay');
-				var modal = document.querySelector('.modal');
+				main.preLoader('show');
+				let overlay = document.querySelector('.overlay');
+				let modal = document.querySelector('.modal');
 
 				if(activity == 'open'){
 					overlay.style.display = 'block';
 					overlay.classList.add('active');
 
 					modal.style.display = 'block';
+
+					main.preLoader();
 				} else {
 					overlay.style.display = 'none';
 					overlay.classList.remove('active');
 
 					modal.style.display = 'none';
+
+					main.preLoader();
 				}
 
-				var closeButton = document.querySelector('.overlay-close');
+				let closeButton = document.querySelector('.overlay-close');
 				closeButton.onclick = function(e) {
 					e.preventDefault();
 					main.loadModal('close');
@@ -245,9 +275,9 @@
 			};
 
 			main.login = function() {
-				
-				var login = document.querySelector('.header-actions--sign-in');
-				var placeholder = document.querySelector('#search-input');
+
+				let login = document.querySelector('.header-actions--sign-in');
+				let placeholder = document.querySelector('#search-input');
 		
 
 				login.onclick = function(e) {
@@ -263,7 +293,7 @@
 					loginButton.onclick = function(e) {
 						e.preventDefault();
 
-						var name = document.querySelector('#name').value;
+						let name = document.querySelector('#name').value;
 
 						if(name){
 							placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
@@ -284,12 +314,15 @@
 			};
 
 			main.checkStorage = function() {
+				// check if have localStorage support
 				if (window.localStorage) {
 
-					var name = localStorage.getItem('name');
+					// get name from localStorage
+					let name = localStorage.getItem('name');
 
+					// show login button or not
 					if(name){
-						var placeholder = document.querySelector('#search-input');
+						let placeholder = document.querySelector('#search-input');
 						placeholder.setAttribute('placeholder', `Hello ${name}, what do you want to search?`);
 						document.querySelector('.header-actions--sign-in').style.display = 'none';
 						document.querySelector('.header-actions--account').style.display = 'block';
@@ -306,6 +339,7 @@
 				main.preLoader();
 				main.login();
 				main.checkStorage();
+				main.sort();
 			};
 
 			window.onload = main.init();
